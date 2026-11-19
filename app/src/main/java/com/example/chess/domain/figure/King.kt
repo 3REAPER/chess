@@ -4,7 +4,7 @@ import com.example.chess.domain.Figure
 import com.example.chess.domain.FigureColor
 import com.example.chess.domain.Position
 
-class King(position: Position, color: FigureColor): Figure(position, color) {
+class King(position: Position, color: FigureColor, var isCheck: Boolean): Figure(position, color) {
 
     override fun getMoves(): List<Position> {
         val result = mutableListOf<Position>()

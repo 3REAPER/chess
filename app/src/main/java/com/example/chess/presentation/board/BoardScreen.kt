@@ -12,12 +12,13 @@ fun BoardScreen(
     val viewModel: BoardViewModel = viewModel()
 
     val gameMap = viewModel.gameMap.collectAsState()
+    val isWhiteMove = viewModel.isWhiteMove.collectAsState()
 
     BoardView(
         modifier,
         gameMap.value,
         {viewModel.selectFigure(it.position)},
         {viewModel.moveFigure(it)},
-        true
+        isWhiteMove.value
     )
 }
