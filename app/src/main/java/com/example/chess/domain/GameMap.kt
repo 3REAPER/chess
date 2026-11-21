@@ -6,6 +6,8 @@ import com.example.chess.domain.figure.Knight
 import com.example.chess.domain.figure.Pawn
 import com.example.chess.domain.figure.Queen
 import com.example.chess.domain.figure.Rook
+import com.example.chess.domain.history.HistoryManager
+import com.example.chess.domain.history.HistoryManagerImpl
 import kotlin.math.abs
 import kotlin.math.sign
 
@@ -19,6 +21,8 @@ class GameMap() {
             )
         }
     }
+        private set
+    var historyManager: HistoryManager = HistoryManagerImpl()
         private set
 
     var isCheckMateWhite = false
@@ -74,19 +78,20 @@ class GameMap() {
     }
 
     fun moveFigure(to: Position) {
-        var position: Position? = null
+        var figure: Figure? = null
         map.forEach {
             it.forEach {
                 if (it.isSelected) {
-                    position = it.figure?.position
+                    figure = it.figure
                     return@forEach
                 }
             }
         }
 
-        val canMove = map[getRow(to)][getColumn(to)].isAttack
+        val toFigure = map[getRow(to)][getColumn(to)]
+        val canMove = toFigure.isAttack
 
-        position?.takeIf { canMove }?.let {
+        figure?.position?.takeIf { canMove }?.let {
             val figure = map[getRow(it)][getColumn(it)].figure
             figure?.changePosition(to)
             map[getRow(it)][getColumn(it)] = Square(
@@ -103,6 +108,12 @@ class GameMap() {
 
         setCheckIfKingAttackedOrCheckMate()
         clearHighlights()
+        if (canMove) {
+            figure?.let {
+                historyManager.writeMove(it, to, toFigure.figure,isCheck(map, FigureColor.White) || isCheck(map, FigureColor.Black))
+            }
+        }
+
     }
 
     private fun setCheckIfKingAttackedOrCheckMate() {
@@ -222,9 +233,10 @@ class GameMap() {
         const val ROWS_COUNT = 8
         const val COLUMN_COUNT = 8
 
-        fun createMap(map: Array<Array<Square>>): GameMap {
+        fun createMap(map: Array<Array<Square>>, historyManager: HistoryManager): GameMap {
             val result = GameMap()
             result.map = map
+            result.historyManager = historyManager
 
             result.setCheckIfKingAttackedOrCheckMate()
             return result

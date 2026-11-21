@@ -26,7 +26,7 @@ class BoardViewModel : ViewModel() {
             _gameMap.value.moveFigure(to)
             val newMap = _gameMap.value.map
             _isWhiteMove.update { return@update !it }
-            _gameMap.emit(GameMap.createMap(newMap))
+            _gameMap.emit(GameMap.createMap(newMap, _gameMap.value.historyManager))
         }
     }
 
@@ -34,7 +34,7 @@ class BoardViewModel : ViewModel() {
         viewModelScope.launch {
             _gameMap.value.selectFigure(position)
             val newMap = _gameMap.value.map
-            _gameMap.emit(GameMap.createMap(newMap))
+            _gameMap.emit(GameMap.createMap(newMap, _gameMap.value.historyManager))
         }
 
     }
