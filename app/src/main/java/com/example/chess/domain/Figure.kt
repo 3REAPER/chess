@@ -5,6 +5,8 @@ abstract class Figure(
     val color: FigureColor
 ) {
 
+    var hasMoved: Boolean = false
+
     abstract fun getMoves(): List<Position>
 
     abstract fun getAttack(): List<Position>
@@ -17,4 +19,3 @@ abstract class Figure(
         return this.filter { return@filter it.column in 1..8 && it.row in 1..8 }
     }
 }
-

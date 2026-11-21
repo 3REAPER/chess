@@ -13,12 +13,17 @@ fun BoardScreen(
 
     val gameMap = viewModel.gameMap.collectAsState()
     val isWhiteMove = viewModel.isWhiteMove.collectAsState()
+    val pendingPromotion = viewModel.pendingPromotion.collectAsState()
 
     BoardView(
-        modifier,
-        gameMap.value,
-        {viewModel.selectFigure(it.position)},
-        {viewModel.moveFigure(it)},
-        isWhiteMove.value
+        modifier = modifier,
+        gameMap = gameMap.value,
+        onClickFigure = { viewModel.selectFigure(it.position) },
+        onClickMove = { viewModel.moveFigure(it) },
+        onRestart = { viewModel.restart() },
+        isWhiteMove = isWhiteMove.value,
+        isPromotionPending = pendingPromotion.value != null,
+        onPromote = { viewModel.promote(it) },
+        onCancelPromotion = { viewModel.cancelPromotion() }
     )
 }

@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">Chess</string>
+
+    <string name="app_title">Шахматы</string>
+    <string name="turn_white">Ход белых</string>
+    <string name="turn_black">Ход чёрных</string>
+    <string name="new_game">Новая игра</string>
+
+    <string name="history_title">История ходов</string>
+    <string name="history_empty">Ходов пока нет</string>
+    <string name="history_empty_hint">Сделайте первый ход — он появится здесь</string>
+    <string name="history_column_number">№</string>
+    <string name="history_column_white">Белые</string>
+    <string name="history_column_black">Чёрные</string>
+    <string name="history_en_passant">e.p.</string>
+
+    <plurals name="moves_count">
+        <item quantity="one">%d ход</item>
+        <item quantity="few">%d хода</item>
+        <item quantity="many">%d ходов</item>
+        <item quantity="other">%d хода</item>
+    </plurals>
+
+    <string name="checkmate_title">Мат!</string>
+    <string name="checkmate_winner_white">Победа белых</string>
+    <string name="checkmate_winner_black">Победа чёрных</string>
+    <string name="checkmate_loser_white">Белому королю некуда уйти от шаха</string>
+    <string name="checkmate_loser_black">Чёрному королю некуда уйти от шаха</string>
+    <string name="checkmate_stat_moves">Ходов</string>
+    <string name="checkmate_stat_last_move">Решающий ход</string>
+    <string name="checkmate_view_board">Посмотреть позицию</string>
+
+    <string name="stalemate_title">Пат</string>
+    <string name="stalemate_result">Ничья</string>
+    <string name="stalemate_white">У белых нет ходов, но их король не под шахом</string>
+    <string name="stalemate_black">У чёрных нет ходов, но их король не под шахом</string>
+
+    <string name="result_checkmate">Мат</string>
+    <string name="result_stalemate">Пат</string>
+
+    <string name="promotion_title">Превращение пешки</string>
+    <string name="promotion_subtitle">Выберите, в какую фигуру превратится пешка</string>
+    <string name="piece_queen">Ферзь</string>
+    <string name="piece_rook">Ладья</string>
+    <string name="piece_bishop">Слон</string>
+    <string name="piece_knight">Конь</string>
 </resources>

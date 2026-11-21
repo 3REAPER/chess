@@ -4,8 +4,14 @@ data class Position(
     val row: Int,
     val column: Int
 ){
+    val file: String
+        get() = FILES[column - 1]
+
     override fun toString(): String {
-        val list = listOf("a", "b", "c", "d", "e", "f", "g", "h")
-        return "${list[column - 1]}${row + 1}"
+        return "$file$row"
+    }
+
+    private companion object {
+        val FILES = listOf("a", "b", "c", "d", "e", "f", "g", "h")
     }
 }
